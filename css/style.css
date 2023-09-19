@@ -131,3 +131,9 @@ button:hover{
 .square.dieci.clicked {
   background-color: var(--active-bg);
 }
+
+.square.sette.clicked.bomb,
+.square.nove.clicked.bomb,
+.square.dieci.clicked.bomb{
+  background-color: red;
+}

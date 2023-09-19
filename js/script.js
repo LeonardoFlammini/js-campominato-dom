@@ -2,8 +2,11 @@
 const container = document.querySelector(".container");
 const numCells = document.getElementById("grid-dim");
 const btnStart = document.querySelector("button");
+const bombArray = [];
+const numIter = 16;
 /*********** LET ***************/
 let className;
+
 
 
 reset();
@@ -11,6 +14,8 @@ reset();
 
 btnStart.addEventListener('click', function(){
   reset();
+  createBomb(parseInt(numCells.value));
+  console.log("array bombe", bombArray);
   className = selectValue(numCells.value);
   letsPlay(className);
 });
@@ -68,7 +73,35 @@ function letsPlay(flag) {
   }
 }
 
+function createBomb (max){
+
+  
+
+  for (let i = 0; i < numIter; i++){
+    // console.log(i,"iterazione");
+    let found ;
+    do{
+
+      const newBomb = randomizer(0,max);
+      // console.log("numero estratto: ", newBomb);
+
+      if(!(bombArray.includes(newBomb))){
+        // console.log("NON trovato");
+        bombArray.push(newBomb);
+        found = false;
+      }else{
+        // console.log("trovato");
+        found = true;
+      }
+    }while(found)
+  }
+}
+
+function randomizer(min , max){
+  return Math.ceil(Math.random() * (max - min) + min);
+}
+
 function handleBtnClick(){
   this.classList.toggle("clicked");
-  this.innerHTML = this._ID;
+  
 }
