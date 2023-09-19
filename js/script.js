@@ -2,11 +2,14 @@
 const container = document.querySelector(".container");
 const numCells = document.getElementById("grid-dim");
 const btnStart = document.querySelector("button");
+const outPut = document.getElementById("output-msg");
 const bombArray = [];
 const numIter = 16;
 /*********** LET ***************/
+let message;
 let className;
-
+let pointsCounter = 0;
+let cellsArray;
 
 
 reset();
@@ -14,22 +17,26 @@ reset();
 
 btnStart.addEventListener('click', function(){
   reset();
+  className = selectValue(numCells.value);
   createBomb(parseInt(numCells.value));
   console.log("array bombe", bombArray);
-  className = selectValue(numCells.value);
   letsPlay(className);
 });
 
 
+cellsArray = document.getElementsByClassName("square");
 
-
-
+console.log(pointsCounter);
 
 /*********** FUNCTIONS ***************/
 function reset(){
   container.innerHTML = "";
+  bombArray.splice(0,bombArray.length);
+  outPut.innerHTML = '';
+  pointsCounter = 0;
 }
 
+/*************************************/
 
 function selectValue(numCellsF){
   let classNameF;
@@ -54,6 +61,7 @@ function selectValue(numCellsF){
   return classNameF;
 }
 
+/*************************************/
 
 function letsPlay(flag) {
   
@@ -73,9 +81,9 @@ function letsPlay(flag) {
   }
 }
 
-function createBomb (max){
+/*************************************/
 
-  
+function createBomb (max){
 
   for (let i = 0; i < numIter; i++){
     // console.log(i,"iterazione");
@@ -97,11 +105,38 @@ function createBomb (max){
   }
 }
 
+/*************************************/
+
 function randomizer(min , max){
   return Math.ceil(Math.random() * (max - min) + min);
 }
 
+/*************************************/
+
 function handleBtnClick(){
-  this.classList.toggle("clicked");
-  
+  if(bombArray.includes(this._ID)){
+    endGame(pointsCounter);
+  }else{
+    this.classList.add("clicked");
+    pointsCounter++;
+    this.removeEventListener('click', handleBtnClick);
+    console.log(pointsCounter);
+  }
+
+  // return pointsCounter;
+}
+
+function endGame (pointsCounter){
+
+  for(let i = 0; i < parseInt(numCells.value); i++){
+    if ( bombArray.includes(cellsArray[i]._ID)){
+      cellsArray[i].classList.add("bomb");
+    } 
+  }
+
+  const tend = document.createElement('div');
+  tend.className = "tend";
+  // tend.classList.remove("d-none");
+  container.append(tend);
+  outPut.innerHTML = `HAI PERSO: il tuo punteggio è ${pointsCounter}`
 }

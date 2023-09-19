@@ -85,6 +85,7 @@ button:hover{
 
 .main-wrapper{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -93,6 +94,7 @@ button:hover{
 }
 
 .container{
+  position: relative;
   width: 600px;
   height: 600px;
   display: flex;
@@ -132,8 +134,18 @@ button:hover{
   background-color: var(--active-bg);
 }
 
-.square.sette.clicked.bomb,
-.square.nove.clicked.bomb,
-.square.dieci.clicked.bomb{
+.square.sette.bomb,
+.square.nove.bomb,
+.square.dieci.bomb{
   background-color: red;
+}
+
+.tend{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
 }
