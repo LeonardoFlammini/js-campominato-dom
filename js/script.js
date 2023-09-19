@@ -14,7 +14,7 @@ let cellsArray;
 
 reset();
 
-
+//TODO:verificare se il reset impalla il browser. Il problema era che schiacciando play con valore 0 dopo fine gioco impallava tutto 
 btnStart.addEventListener('click', function(){
   reset();
   className = selectValue(numCells.value);
