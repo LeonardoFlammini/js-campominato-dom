@@ -74,7 +74,7 @@ function letsPlay(flag) {
       square.addEventListener('click', handleBtnClick);
       container.append(square);
       square._ID = i;
-      square.innerHTML = square._ID;
+      // square.innerHTML = square._ID;
       // console.log(square);
       // square.innerHTML = square._ID;
     }
