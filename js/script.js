@@ -46,7 +46,6 @@ function selectValue(numCellsF){
       classNameF = "dieci";
       break;
     case "81":
-      
       classNameF = "nove";
       break;
     case "49":
@@ -84,6 +83,8 @@ function letsPlay(flag) {
 /*************************************/
 
 function createBomb (max){
+  //controllo sul valore max
+  if(max != 0 ){
 
   for (let i = 0; i < numIter; i++){
     // console.log(i,"iterazione");
@@ -102,6 +103,7 @@ function createBomb (max){
         found = true;
       }
     }while(found)
+  }
   }
 }
 
