@@ -1,0 +1,133 @@
+:root{
+  --active-bg:#b3cde0;
+  --button-green: #67bb59;
+  --button-green-hover: #8cff79;
+  --select-green: #8dff79cb;
+  --container-bg:#6497b1;
+  --main-w-bg:#005b96;
+}
+
+/*
+#b3cde0 - active
+*/
+.debug{
+  /*debug*/
+  background-color: rgba(255, 0, 0, 0.329);
+}
+
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.top-bar{
+  width: 100%;
+  height: 90px;
+  background-color: var(--active-bg);
+}
+
+.top-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 60%;
+  height: 100%;
+  margin: 0 auto;
+  
+}
+
+.logo,
+.input{
+  display: flex;
+  align-items: center;
+  flex-basis: 40%;
+  height: 100%;
+}
+.logo h1 {
+  font-size: 40px;
+  text-decoration: underline;
+}
+
+.input{
+  justify-content: flex-end;
+  column-gap: 10px;
+}
+
+select{
+  padding: 10px 20px;
+  background-color: none;
+  border: none;
+  cursor: pointer;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: var(--button-green);
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  margin-right: 10px;
+  transition: all .2s;
+  cursor: pointer;
+}
+
+button:hover{
+  background-color: var(--container-bg);
+  color: black;
+}
+
+.main-wrapper{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 90px);
+  background-color: var(--main-w-bg);
+}
+
+.container{
+  width: 600px;
+  height: 600px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: var(--container-bg);
+  border: 4px solid white;
+}
+
+.square.dieci,
+.square.nove,
+.square.sette{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  aspect-ratio: 1 / 1;
+  border: 1px solid white;
+  color: white;
+  cursor: pointer;
+}
+
+.square.dieci{
+  width:calc(100% / 10 ) ;
+}
+
+.square.nove{
+  width:calc(100% / 9 ) ;
+}
+
+.square.sette{
+  width:calc(100% / 7 ) ;
+}
+
+.square.sette.clicked,
+.square.nove.clicked,
+.square.dieci.clicked {
+  background-color: var(--active-bg);
+}
