@@ -14,7 +14,6 @@ let cellsArray;
 
 reset();
 
-//TODO:verificare se il reset impalla il browser. Il problema era che schiacciando play con valore 0 dopo fine gioco impallava tutto 
 btnStart.addEventListener('click', function(){
   reset();
   className = selectValue(numCells.value);
@@ -34,6 +33,7 @@ function reset(){
   bombArray.splice(0,bombArray.length);
   outPut.innerHTML = '';
   pointsCounter = 0;
+  container.classList.remove("scale-minus");
 }
 
 /*************************************/
@@ -74,6 +74,7 @@ function letsPlay(flag) {
       square.addEventListener('click', handleBtnClick);
       container.append(square);
       square._ID = i;
+      square.innerHTML = square._ID;
       // console.log(square);
       // square.innerHTML = square._ID;
     }
@@ -118,6 +119,8 @@ function randomizer(min , max){
 function handleBtnClick(){
   if(bombArray.includes(this._ID)){
     endGame(pointsCounter);
+  }else if(pointsCounter === (cellsArray.length - 16)){
+    win(pointsCounter);
   }else{
     this.classList.add("clicked");
     pointsCounter++;
@@ -128,17 +131,30 @@ function handleBtnClick(){
   // return pointsCounter;
 }
 
+/*************************************/
+
 function endGame (pointsCounter){
 
   for(let i = 0; i < parseInt(numCells.value); i++){
     if ( bombArray.includes(cellsArray[i]._ID)){
       cellsArray[i].classList.add("bomb");
+      cellsArray[i].innerHTML = `<i class="fa-solid fa-bomb"></i>`;
     } 
   }
 
+  container.classList.add("scale-minus");
+
   const tend = document.createElement('div');
   tend.className = "tend";
-  // tend.classList.remove("d-none");
   container.append(tend);
   outPut.innerHTML = `HAI PERSO: il tuo punteggio è ${pointsCounter}`
+}
+
+/*************************************/
+
+function win(pointsCounter){
+  const tend = document.createElement('div');
+  tend.className = "tend";
+  container.append(tend);
+  outPut.innerHTML = `COMPLIMENTI, HAI VINTO: il tuo punteggio è ${pointsCounter}`
 }
